@@ -16,8 +16,8 @@ const LINKS = [
   { name: "E-post",    description: "Gmail",             icon: "email",    color: "red",    url: "https://mail.google.com/" },
   { name: "Facebook",  description: "Familj och vänner", icon: "facebook", color: "blue",   url: "https://www.facebook.com/" },
   { name: "Kivra",     description: "Digital post",      icon: "mailbox",  color: "green",  url: "https://inbox.kivra.com/" },
-  { name: "Banken",    description: "Länsförsäkringar",  icon: "bank",     color: "blue",   url: "https://secure246.lansforsakringer.se/nim" },
-  { name: "Vården",    description: "1177",              icon: "health",   color: "purple", url: "https://www.1177.se/" },
+  { name: "Banken",    description: "Länsförsäkringar",  icon: "bank",     color: "blue",   url: "https://secure246.lansforsakringar.se/nim/" },
+  { name: "Vården",    description: "1177 – logga in",   icon: "health",   color: "purple", url: "https://e-tjanster.1177.se/mvk/" },
   { name: "Mobilen",   description: "Mitt Vimla",        icon: "phone",    color: "gray",   url: "https://mitt.vimla.se/mitt-vimla" },
   { name: "Hembygden", description: "Östra Blekinge",    icon: "home",     color: "brown",  url: "https://hembygd.se/ostra-blekinge" },
 ];
