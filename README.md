@@ -4,18 +4,18 @@ A simple home page in Swedish with big buttons, made for Grandpa. Plain HTML, CS
 
 ## Put it on GitHub Pages
 
-1. Create a new **public** repository on GitHub, for example `arne_hjalpside`.
+1. Create a new **public** repository on GitHub, for example `arne_hjalpsida`.
 2. Push this folder to it:
    ```sh
    git init
    git add .
    git commit -m "Arnes startsida"
    git branch -M main
-   git remote add origin git@github.com:drakeaxelrod/arne_hjalpside.git
+   git remote add origin git@github.com:drakeaxelrod/arne_hjalpsida.git
    git push -u origin main
    ```
 3. On GitHub, open **Settings → Pages**. Under *Build and deployment*, set **Source: Deploy from a branch**, choose **Branch: main**, folder **/ (root)**, and click Save.
-4. After a minute or so the page is live at `https://drakeaxelrod.github.io/arne_hjalpside/`.
+4. After a minute or so the page is live at `https://drakeaxelrod.github.io/arne_hjalpsida/`.
 
 ## Make it his browser's home page
 
