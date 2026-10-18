@@ -1,6 +1,6 @@
 # Arnes startsida
 
-A simple home page in Swedish with big buttons, made for Grandpa. It's a single `index.html` with no build step, so GitHub Pages can host it for free.
+A simple home page in Swedish with big buttons, made for Grandpa. Plain HTML, CSS and JavaScript with no build step, so GitHub Pages can host it for free. The icons and font are stored in the repo, so the page never depends on another server.
 
 ## Put it on GitHub Pages
 
@@ -27,20 +27,34 @@ A simple home page in Swedish with big buttons, made for Grandpa. It's a single 
 
 ## Add or remove buttons
 
-All buttons live in `lankar.js`, one line each, in the order they appear:
+All buttons live in `links.js`, one line each, in the order they appear:
 
 ```js
-{ namn: "Banken", beskrivning: "Swedbank", ikon: "🏦", farg: "gron", adress: "https://www.swedbank.se/" },
+{ name: "Banken", description: "Länsförsäkringar", icon: "bank", color: "blue", url: "https://secure246.lansforsakringer.se/nim" },
 ```
 
 - **Remove** a button: delete its line.
 - **Add** a button: copy a line and change the text. Keep the comma at the end.
-- `farg` is one of `bla`, `rod`, `gron`, `lila`, `orange`, `turkos`, `brun`, `gra`.
+- `icon` is a name from the list at the top of `icons.js` (`weather`, `news`, `email`, `mailbox`, `bank`, `health`, `phone`, `home`, `tv`, `radio`, `music`, `photos`, …). An emoji also works. An unknown name shows a globe.
+- `color` is one of `blue`, `red`, `green`, `purple`, `orange`, `teal`, `brown`, `gray`.
 
-You can edit it straight on github.com (open `lankar.js` and click the ✏️ pencil), even from your phone. The live page updates within a minute or two. If the buttons disappear after an edit, a comma or quote mark is probably missing.
+You can edit it straight on github.com (open `links.js` and click the ✏️ pencil), even from your phone. The live page updates within a minute or two. If a line is broken, that button is skipped; if the whole file is broken, the page shows a short Swedish message instead of a blank screen. The browser console says what went wrong.
 
 ## How the buttons open
 
-Every button opens its site in one shared extra tab. When Grandpa is done, he closes it with ✕ and is back on his start page. Clicking another button reuses that same tab, so tabs don't pile up.
+Every button (and the search) opens in one shared extra tab. When Grandpa is done, he closes it with ✕ and is back on his start page. Clicking another button reuses that same tab, so tabs don't pile up.
 
-(Opening sites in a pop-up box on the page isn't possible: SVT, Gmail, Facebook, YouTube, 1177 and banks all block being shown inside another page.)
+(Opening sites in a pop-up box on the page isn't possible: SVT, Gmail, Facebook, 1177, Kivra and banks all block being shown inside another page.)
+
+## Files
+
+| File | What it is |
+|---|---|
+| `index.html` | Page structure |
+| `style.css` | Look, colors and animations (animations turn off if the device asks for reduced motion) |
+| `app.js` | Builds the buttons, greeting, date and clock |
+| `links.js` | **The buttons — edit this one** |
+| `icons.js` | Icons from [Phosphor Icons](https://phosphoricons.com) (MIT) |
+| `fonts/` | [Atkinson Hyperlegible](https://www.brailleinstitute.org/freefont/), a font made for readers with low vision (OFL) |
+
+Note: opening `index.html` directly from disk works, but the font only loads when served over http (GitHub Pages, or `python3 -m http.server` locally).

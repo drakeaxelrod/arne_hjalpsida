@@ -3,211 +3,49 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5efe4">
   <title>Arnes startsida</title>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏠</text></svg>">
-  <style>
-    :root {
-      --bg: #f6f1e7;
-      --text: #1d1d1d;
-      --muted: #4a4a4a;
-      --focus: #ffbf00;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--text);
-      font-family: Verdana, "DejaVu Sans", Arial, sans-serif;
-      font-size: 22px;
-      line-height: 1.4;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 32px 16px 64px;
-    }
-
-    header { text-align: center; margin-bottom: 32px; }
-
-    h1 { font-size: 2.6rem; margin: 0 0 8px; }
-
-    .datum { font-size: 1.6rem; color: var(--muted); margin: 0; }
-    .klocka { font-size: 3rem; font-weight: bold; margin: 4px 0 0; }
-
-    /* Sökrutan */
-    .sok {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 0 auto 40px;
-      max-width: 900px;
-    }
-    .sok label {
-      width: 100%;
-      font-size: 1.5rem;
-      font-weight: bold;
-    }
-    .sok input {
-      flex: 1 1 300px;
-      font-size: 1.6rem;
-      padding: 18px 20px;
-      border: 4px solid #333;
-      border-radius: 16px;
-      min-width: 0;
-    }
-    .sok button {
-      flex: 0 0 auto;
-      font-size: 1.6rem;
-      font-weight: bold;
-      padding: 18px 32px;
-      border: none;
-      border-radius: 16px;
-      background: #1f5fbf;
-      color: #fff;
-      cursor: pointer;
-    }
-
-    /* De stora knapparna */
-    .knappar {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 24px;
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .knapp {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      min-height: 220px;
-      padding: 24px 16px;
-      border-radius: 24px;
-      color: #fff;
-      text-decoration: none;
-      text-align: center;
-      box-shadow: 0 6px 0 rgba(0, 0, 0, .25);
-      transition: transform .1s, box-shadow .1s;
-    }
-    .knapp:hover { transform: translateY(-3px); box-shadow: 0 9px 0 rgba(0, 0, 0, .25); }
-    .knapp:active { transform: translateY(4px); box-shadow: 0 2px 0 rgba(0, 0, 0, .25); }
-
-    .knapp:focus-visible, .sok input:focus-visible, .sok button:focus-visible {
-      outline: 6px solid var(--focus);
-      outline-offset: 4px;
-    }
-
-    .ikon { font-size: 4.5rem; line-height: 1; }
-    .namn { font-size: 2.1rem; font-weight: bold; }
-    .beskrivning { font-size: 1.2rem; opacity: .95; }
-
-    /* Färger – mörka nog för att vit text ska synas tydligt */
-    .bla    { background: #1f4e9c; }
-    .rod    { background: #b3261e; }
-    .gron   { background: #1e6b34; }
-    .lila   { background: #6a2c91; }
-    .orange { background: #a84a00; }
-    .turkos { background: #00636b; }
-    .brun   { background: #6d4c2f; }
-    .gra    { background: #3d4a5c; }
-
-    footer {
-      text-align: center;
-      margin-top: 48px;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
-
-    @media (max-width: 600px) {
-      body { font-size: 18px; }
-      h1 { font-size: 2rem; }
-      .klocka { font-size: 2.4rem; }
-      .knapp { min-height: 170px; }
-    }
-  </style>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="fonts/atkinson-hyperlegible-700.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main>
-    <header>
-      <h1 id="halsning">Hej Arne!</h1>
-      <p class="datum" id="datum"></p>
-      <p class="klocka" id="klocka"></p>
+  <main class="page">
+    <header class="top">
+      <div>
+        <h1 class="greeting" id="greeting">Hej Arne!</h1>
+        <p class="date" id="date"></p>
+      </div>
+      <p class="clock" id="clock" aria-label="Klockan"></p>
     </header>
 
-    <form class="sok" action="https://www.google.com/search" method="get" target="arnes-flik">
-      <label for="q">Sök på internet:</label>
-      <input id="q" name="q" type="search" placeholder="Skriv här…" autocomplete="off">
-      <button type="submit">🔍 Sök</button>
+    <form class="search" action="https://www.google.com/search" method="get" target="grandpa-tab">
+      <label class="search-label" for="q">Sök på internet</label>
+      <div class="search-row">
+        <div class="search-field">
+          <span class="search-icon" id="search-icon" aria-hidden="true"></span>
+          <input id="q" name="q" type="search" placeholder="Skriv vad du letar efter…" autocomplete="off">
+        </div>
+        <button class="search-button" type="submit">Sök</button>
+      </div>
     </form>
 
-    <!-- Knapparna skapas från listan i lankar.js -->
-    <ul class="knappar" id="knappar"></ul>
+    <!-- Buttons are built from the list in links.js -->
+    <ul class="tile-grid" id="tiles"></ul>
 
-    <footer>
-      Tryck på en knapp för att komma dit. När du är klar, stäng fliken med krysset ✕ så kommer du tillbaka hit.
+    <noscript>
+      <p class="notice">Knapparna kunde inte visas. Be någon i familjen om hjälp.</p>
+    </noscript>
+
+    <footer class="footer">
+      Tryck på en knapp för att öppna sidan. När du är klar stänger du fliken med krysset&nbsp;✕ – då kommer du tillbaka hit.
     </footer>
   </main>
 
-  <script src="lankar.js"></script>
-  <script>
-    var FARGER = ["bla", "rod", "gron", "lila", "orange", "turkos", "brun", "gra"];
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    function skapaKnappar() {
-      var lista = document.getElementById("knappar");
-      LANKAR.forEach(function (lank) {
-        var a = document.createElement("a");
-        a.className = "knapp " + (FARGER.indexOf(lank.farg) >= 0 ? lank.farg : "gra");
-        a.href = lank.adress;
-        // Alla knappar öppnar i samma extra flik, så flikarna inte blir fler och fler.
-        a.target = "arnes-flik";
-
-        var ikon = document.createElement("span");
-        ikon.className = "ikon";
-        ikon.setAttribute("aria-hidden", "true");
-        ikon.textContent = lank.ikon || "🌐";
-
-        var namn = document.createElement("span");
-        namn.className = "namn";
-        namn.textContent = lank.namn;
-
-        a.append(ikon, namn);
-
-        if (lank.beskrivning) {
-          var beskrivning = document.createElement("span");
-          beskrivning.className = "beskrivning";
-          beskrivning.textContent = lank.beskrivning;
-          a.append(beskrivning);
-        }
-
-        var li = document.createElement("li");
-        li.append(a);
-        lista.append(li);
-      });
-    }
-
-    function uppdatera() {
-      var nu = new Date();
-      var timme = nu.getHours();
-      var halsning =
-        timme < 5  ? "God natt" :
-        timme < 10 ? "God morgon" :
-        timme < 18 ? "Hej" : "God kväll";
-      document.getElementById("halsning").textContent = halsning + " Arne!";
-
-      var datum = nu.toLocaleDateString("sv-SE", { weekday: "long", day: "numeric", month: "long", year: "numeric" });
-      document.getElementById("datum").textContent = "Idag är det " + datum;
-      document.getElementById("klocka").textContent =
-        nu.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
-    }
-    skapaKnappar();
-    uppdatera();
-    setInterval(uppdatera, 10000);
-  </script>
+  <script src="icons.js"></script>
+  <script src="links.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
