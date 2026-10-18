@@ -19,15 +19,16 @@
       <p class="clock" id="clock" aria-label="Klockan"></p>
     </header>
 
-    <form class="search" action="https://www.google.com/search" method="get" target="grandpa-tab">
-      <label class="search-label" for="q">Sök på internet</label>
-      <div class="search-row">
-        <div class="search-field">
-          <span class="search-icon" id="search-icon" aria-hidden="true"></span>
-          <input id="q" name="q" type="search" placeholder="Skriv vad du letar efter…" autocomplete="off">
-        </div>
-        <button class="search-button" type="submit">Sök</button>
+    <form class="search" id="search" action="https://www.google.com/search" method="get" target="grandpa-tab" role="search">
+      <label class="search-label" for="q">Sök med Google</label>
+      <div class="search-box" id="search-box">
+        <span class="search-icon" id="search-icon" aria-hidden="true"></span>
+        <input id="q" name="q" type="search" placeholder="Vad vill du söka efter?" autocomplete="off" enterkeyhint="search">
+        <button class="search-round" id="search-clear" type="button" aria-label="Töm sökrutan" title="Töm sökrutan" hidden></button>
+        <button class="search-round" id="search-mic" type="button" aria-label="Säg vad du vill söka efter" title="Prata in din sökning" hidden></button>
+        <button class="search-button" type="submit"><span class="search-button-icon" id="search-button-icon" aria-hidden="true"></span>Sök</button>
       </div>
+      <p class="search-hint" id="search-hint" aria-live="polite"></p>
     </form>
 
     <!-- Buttons are built from the list in links.js -->

@@ -35,7 +35,7 @@ All buttons live in `links.js`, one line each, in the order they appear:
 
 - **Remove** a button: delete its line.
 - **Add** a button: copy a line and change the text. Keep the comma at the end.
-- `icon` is a name from the list at the top of `icons.js` (`weather`, `news`, `email`, `mailbox`, `bank`, `health`, `phone`, `home`, `tv`, `radio`, `music`, `photos`, …). An emoji also works. An unknown name shows a globe.
+- `icon` is a name from the list at the top of `icons.js` (`weather`, `news`, `tv`, `email`, `mailbox`, `bank`, `stocks`, `health`, `phone`, `home`, `web`, `radio`, `music`, `photos`, …). An emoji also works. An unknown name shows a globe.
 - `color` is one of `blue`, `red`, `green`, `purple`, `orange`, `teal`, `brown`, `gray`.
 
 You can edit it straight on github.com (open `links.js` and click the ✏️ pencil), even from your phone. The live page updates within a minute or two. If a line is broken, that button is skipped; if the whole file is broken, the page shows a short Swedish message instead of a blank screen. The browser console says what went wrong.

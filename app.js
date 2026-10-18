@@ -98,6 +98,102 @@
     toastTimer = setTimeout(function () { toast.classList.remove("show"); }, 3500);
   }
 
+  function setupSearch() {
+    var form = document.getElementById("search");
+    var box = document.getElementById("search-box");
+    var input = document.getElementById("q");
+    var clear = document.getElementById("search-clear");
+    var mic = document.getElementById("search-mic");
+    var hint = document.getElementById("search-hint");
+
+    if (icons.search) {
+      document.getElementById("search-icon").innerHTML = svg(icons.search);
+      document.getElementById("search-button-icon").innerHTML = svg(icons.search);
+    }
+    clear.innerHTML = icons.clear ? svg(icons.clear) : "✕";
+    mic.innerHTML = icons.microphone ? svg(icons.microphone) : "🎤";
+
+    function syncClear() { clear.hidden = !input.value; }
+
+    input.addEventListener("input", function () {
+      syncClear();
+      hint.textContent = "";
+    });
+
+    clear.addEventListener("click", function () {
+      input.value = "";
+      syncClear();
+      hint.textContent = "";
+      input.focus();
+    });
+
+    form.addEventListener("submit", function (event) {
+      if (!input.value.trim()) {
+        event.preventDefault();
+        hint.textContent = "Skriv något i rutan först.";
+        box.classList.remove("shake");
+        void box.offsetWidth; // restart the animation
+        box.classList.add("shake");
+        input.focus();
+        return;
+      }
+      hint.textContent = "";
+      showToast("Nu öppnas: Google");
+    });
+
+    box.addEventListener("animationend", function () { box.classList.remove("shake"); });
+
+    // Voice search, only where the browser supports it (Chrome, Edge, Safari).
+    // It fills in the field but never submits on its own: opening a tab without
+    // a click would be stopped by the browser's pop-up blocker.
+    var Recognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    if (!Recognition) return;
+
+    var recognition;
+    var listening = false;
+    mic.hidden = false;
+
+    mic.addEventListener("click", function () {
+      if (listening) {
+        recognition.stop();
+        return;
+      }
+      try {
+        recognition = new Recognition();
+        recognition.lang = "sv-SE";
+        recognition.interimResults = true;
+
+        recognition.onresult = function (event) {
+          var text = "";
+          for (var i = 0; i < event.results.length; i++) text += event.results[i][0].transcript;
+          input.value = text;
+          syncClear();
+          if (event.results[event.results.length - 1].isFinal) {
+            hint.textContent = "Tryck på Sök för att söka.";
+          }
+        };
+        recognition.onerror = function (event) {
+          hint.textContent = event.error === "not-allowed" || event.error === "service-not-allowed"
+            ? "Mikrofonen är avstängd. Skriv i rutan istället."
+            : "Jag hörde inget. Försök igen, eller skriv i rutan.";
+        };
+        recognition.onend = function () {
+          listening = false;
+          mic.classList.remove("listening");
+          if (hint.textContent === "Prata nu – jag lyssnar…") hint.textContent = "";
+        };
+
+        recognition.start();
+        listening = true;
+        mic.classList.add("listening");
+        hint.textContent = "Prata nu – jag lyssnar…";
+      } catch (e) {
+        console.warn("Voice search failed to start:", e);
+        hint.textContent = "Det gick inte att prata in. Skriv i rutan istället.";
+      }
+    });
+  }
+
   function updateClock() {
     var now = new Date();
     var hour = now.getHours();
@@ -118,7 +214,7 @@
     if (el.textContent !== text) el.textContent = text;
   }
 
-  if (icons.search) document.getElementById("search-icon").innerHTML = svg(icons.search);
+  setupSearch();
   buildTiles();
   updateClock();
   setInterval(updateClock, 1000);
