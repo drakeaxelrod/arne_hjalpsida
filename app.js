@@ -51,28 +51,32 @@
       }
 
       var a = document.createElement("a");
-      a.className = "tile " + (COLORS.indexOf(link.color) >= 0 ? link.color : "gray");
+      a.className = "tile " + (COLORS.indexOf(link.color) >= 0 ? link.color : "gray") + (link.wide ? " tile-wide" : "");
       a.href = link.url;
       a.target = TAB_NAME;
       a.addEventListener("click", function () {
         showToast("Nu öppnas: " + link.name);
       });
 
+      var text = document.createElement("span");
+      text.className = "tile-text";
+
       var name = document.createElement("span");
       name.className = "tile-name";
       name.textContent = link.name;
-
-      a.append(iconElement(link.icon), name);
+      text.append(name);
 
       if (link.description) {
         var description = document.createElement("span");
         description.className = "tile-description";
         description.textContent = link.description;
-        a.append(description);
+        text.append(description);
       }
 
+      a.append(iconElement(link.icon), text);
+
       var li = document.createElement("li");
-      li.className = "tile-item";
+      li.className = "tile-item" + (link.wide ? " tile-item-wide" : "");
       li.style.setProperty("--i", shown);
       li.append(a);
       list.append(li);

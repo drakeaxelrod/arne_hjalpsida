@@ -240,6 +240,13 @@ body {
 }
 .tile-icon svg { width: 66px; height: 66px; }
 
+.tile-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
 .tile-name {
   font-size: 2.05rem;
   font-weight: 700;
@@ -251,6 +258,20 @@ body {
   font-size: 1.2rem;
   opacity: .92;
 }
+
+/* Wide button across the whole row: icon beside the text */
+.tile-item-wide { grid-column: 1 / -1; }
+
+.tile-wide {
+  flex-direction: row;
+  gap: 32px;
+  min-height: 180px;
+  text-align: left;
+}
+.tile-wide .tile-text { align-items: flex-start; }
+.tile-wide .tile-icon { margin-bottom: 0; }
+.tile-wide .tile-name { font-size: 2.6rem; }
+.tile-wide .tile-description { font-size: 1.35rem; }
 
 /* Colors (white text stays clearly readable on all of them) */
 .blue   { --c1: #2b63c4; --c2: #1a3f86; }
@@ -372,6 +393,9 @@ body {
   .page { padding-top: 16px; }
   .top { padding: 22px 22px; text-align: center; justify-content: center; }
   .tile { min-height: 190px; }
+  .tile-wide { gap: 20px; min-height: 150px; }
+  .tile-wide .tile-name { font-size: 2.1rem; }
+  .tile-wide .tile-description { font-size: 1.15rem; }
   .tile-icon { width: 88px; height: 88px; }
   .tile-icon svg { width: 54px; height: 54px; }
   .search-box {

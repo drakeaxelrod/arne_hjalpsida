@@ -9,8 +9,10 @@
 //   icon        = a name from icons.js, e.g. "bank", "tv", "weather" (an emoji also works)
 //   color       = blue, red, green, purple, orange, teal, brown or gray
 //   url         = the web address, must start with https://
+//   wide        = optional, set wide: true for a button across the whole row
 
 const LINKS = [
+  { name: "Ring Agnete", description: "WhatsApp – välj Agnete i listan", icon: "whatsapp", color: "green", url: "https://web.whatsapp.com/", wide: true },
   { name: "Vädret",    description: "Möcklö, Senoren",   icon: "weather",  color: "teal",   url: "https://www.smhi.se/vader/prognoser-och-varningar/vaderprognos/q/M%C3%B6ckl%C3%B6/Karlskrona/2691584" },
   { name: "Nyheter",   description: "SVT Nyheter",       icon: "news",     color: "orange", url: "https://www.svt.se/" },
   { name: "TV-tablå",  description: "Vad går på TV?",    icon: "tv",       color: "purple", url: "https://www.tv.nu/" },
